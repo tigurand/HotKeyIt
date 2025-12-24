@@ -1,0 +1,14 @@
+{
+  "Author": "Lucille",
+  "Name": "HotKeyIt",
+  "Punchline": "Hotkey your macro.",
+  "Description": "Use hotkey on your keyboard to execute macro instead of using hotbar.",
+  "InternalName": "HotKeyIt",
+  "ApplicableVersion": "any",
+  "Tags": [
+    "hotkey",
+    "macro"
+  ],
+  "RepoUrl": "https://github.com/tigurand/HotKeyIt",
+  "IconUrl": "https://raw.githubusercontent.com/tigurand/HotKeyIt/refs/heads/main/image/icon.png"
+}
