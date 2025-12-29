@@ -17,6 +17,7 @@ public sealed class HotKeyItWindow : Window, IDisposable
     private string macroBuffer = string.Empty;
     private HotkeyBinding hotkeyBuffer = new();
     private bool enabledBuffer;
+    private bool keyPassthroughBuffer;
 
     private bool dirty;
 
@@ -260,6 +261,15 @@ public sealed class HotKeyItWindow : Window, IDisposable
             ImGui.SameLine();
             ImGui.TextUnformatted($"Current: {hotkeyBuffer}");
 
+            var keyPassthrough = keyPassthroughBuffer;
+            if (ImGui.Checkbox("Pass Input to Game", ref keyPassthrough))
+            {
+                keyPassthroughBuffer = keyPassthrough;
+                dirty = true;
+            }
+            if (ImGui.IsItemHovered())
+                ImGui.SetTooltip("Disables the hotkey from blocking the game input.");
+
             ImGui.Spacing();
             ImGui.TextUnformatted("Macro");
             ImGui.SetNextItemWidth(-1);
@@ -286,6 +296,7 @@ public sealed class HotKeyItWindow : Window, IDisposable
                 profile.Enabled = enabledBuffer;
                 profile.Name = nameBuffer.Trim().Length == 0 ? "(unnamed)" : nameBuffer.Trim();
                 profile.Macro = macroBuffer;
+                profile.KeyPassthrough = keyPassthroughBuffer;
                 profile.Hotkey = new HotkeyBinding
                 {
                     Key = hotkeyBuffer.Key,
@@ -308,6 +319,7 @@ public sealed class HotKeyItWindow : Window, IDisposable
             nameBuffer = string.Empty;
             macroBuffer = string.Empty;
             hotkeyBuffer = new HotkeyBinding();
+            keyPassthroughBuffer = false;
             dirty = false;
             return;
         }
@@ -315,6 +327,7 @@ public sealed class HotKeyItWindow : Window, IDisposable
         nameBuffer = profile.Name;
         macroBuffer = profile.Macro;
         enabledBuffer = profile.Enabled;
+        keyPassthroughBuffer = profile.KeyPassthrough;
         hotkeyBuffer = new HotkeyBinding
         {
             Key = profile.Hotkey.Key,

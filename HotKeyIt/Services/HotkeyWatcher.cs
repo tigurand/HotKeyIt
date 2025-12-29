@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Dalamud;
 using Dalamud.Game.ClientState.Keys;
 using Dalamud.Plugin.Services;
 using HotKeyIt.Models;
@@ -57,7 +58,15 @@ public sealed class HotkeyWatcher : IDisposable
                 continue;
 
             if (isDown && !wasDown)
+            {
+                Service.Log.Debug($"Hotkey activated for profile {profile.Name}, KeyPassthrough: {profile.KeyPassthrough}");
                 executor.Start(profile.Macro);
+                if (!profile.KeyPassthrough)
+                {
+                    Service.Log.Debug($"Blocking key {hk.Key} for game input");
+                    keyState[hk.Key] = false;
+                }
+            }
         }
     }
 

@@ -11,5 +11,6 @@ public sealed class Profile
     public string Name { get; set; } = "New Profile";
     public HotkeyBinding Hotkey { get; set; } = new();
     public string Macro { get; set; } = string.Empty;
+    public bool KeyPassthrough { get; set; } = false;
 }
 
