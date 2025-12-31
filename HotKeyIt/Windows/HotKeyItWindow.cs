@@ -203,7 +203,7 @@ public sealed class HotKeyItWindow : Window, IDisposable
                     ImGui.TableNextRow();
                     ImGui.TableNextColumn();
                     ImGui.AlignTextToFramePadding();
-                    ImGui.TextUnformatted("Enable");
+                    ImGui.TextUnformatted("Enable Hotkey");
                     ImGui.TableNextColumn();
                     var enabled = enabledBuffer;
                     if (ImGui.Checkbox("##enabled", ref enabled))
@@ -211,6 +211,8 @@ public sealed class HotKeyItWindow : Window, IDisposable
                         enabledBuffer = enabled;
                         dirty = true;
                     }
+                    if (ImGui.IsItemHovered())
+                        ImGui.SetTooltip("Only for hotkey, /hki command will still work.");
 
                     ImGui.TableNextRow();
                     ImGui.TableNextColumn();
