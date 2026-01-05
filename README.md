@@ -1,5 +1,3 @@
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y81QD26O)
-
 # HotKeyIt
 
 Just a simple plugin to do your macro with a hotkey instead of hotbar.
